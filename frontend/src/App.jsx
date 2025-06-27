@@ -1,20 +1,24 @@
-import Landing from "./pages/Landing"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import VolunteerDashboard from "./pages/VolunteerDashboard"
-import OrganizerDashboard from "./pages/OrganizerDashboard"
-function App() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import VolunteerDashboard from "./pages/VolunteerDashboard";
+import OrganizerDashboard from "./pages/OrganizerDashboard";
+import MainLayout from "./layout/MainLayout";
 
+function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Landing/>}/>
-          <Route path="/volunteer" element={<VolunteerDashboard/>}/>
-          <Route path="/organizer" element={<OrganizerDashboard/>}/>
-        </Routes>
-      </Router>
-    </>
-  )
+    <Router>
+      <Routes>
+        {/* Public Landing Page (no navbar/sidebar) */}
+        <Route path="/" element={<Landing />} />
+
+        {/* Dashboard Pages (wrapped in MainLayout) */}
+        <Route element={<MainLayout />}>
+          <Route path="/volunteer" element={<VolunteerDashboard />} />
+          <Route path="/organizer" element={<OrganizerDashboard />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
